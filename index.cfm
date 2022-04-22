@@ -17,7 +17,7 @@
          <h4>Task 25</h4>
          <hr>    <label> Enter text Here</label>
                   <br>                                  
-        <textarea name="input_text" cols="35" rows="5"> </textarea>         <br>   
+        <textarea name="input_text" cols="35" rows="5"> </textarea><br>   
             <div class="col-md-4">                     
         		<input class="btn btn-sm btn-primary"	type="submit"	value="submit"   name="Submit"	/>
            </div>
@@ -26,10 +26,11 @@
     </div>               
  <cfif structKeyExists(form, "Submit")>
 <cfset myFunction=createObject("component", "components.tagCloud")>
-<cfset word=myFunction.init(form.input_text)>
-
+<cfset words=myFunction.init(form.input_text)>
+<cflocation url="list.cfm?wordlist='#form.input_text#'">
 </cfif>
-<cfabort>  
+          
+
 </body>
 </html>
 

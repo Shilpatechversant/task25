@@ -88,8 +88,8 @@ transform: translate(-50%, -50%);
 }
 .res1{
   position: absolute; /* or absolute */
-  top: 40%;
-  left: 70%;
+  top: 50%;
+  left: 80%;
   background-color: #40acc7;
   /* bring your own prefixes */
   transform: translate(-50%, -50%);
