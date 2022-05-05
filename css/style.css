@@ -102,5 +102,20 @@ transform: translate(-50%, -50%);
 body{
  background-color:#9d9dbd;
 }
+.bblack{
+color:#111314;
+}
+.bbrown{
+color:#f07f53;
+}
+.bred{
+color:#ff5511;
+}
+.bgreen{
+color:#4CAF50;
+}
+.bblue{
+  color:#698bd4;
+}
 
 
