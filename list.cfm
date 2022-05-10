@@ -46,12 +46,12 @@
                           </table>
                       </div>
                   </cfoutput>
-                        <div class="row">
-                          <div class="col-md-12">
-                              <div class="row">
-                                  <div class="col-md-2">
-                                      <p> Ascending Order From Database</p>
-                                      <cfquery name="usersList" datasource="newtech"> SELECT * FROM sakila.wordtest ORDER BY tes_word ASC; </cfquery>
+                    <div class="row">
+                        <div class="col-md-12">
+                            <div class="row">
+                                <div class="col-md-2">
+                                    <p> Ascending Order From Database</p>
+                                    <cfinvoke component="components.task1" method="task1" returnVariable = "usersList">                                    
                                       <table border="1" class="table table-bordered">
                                           <cfoutput query="usersList">
                                               <tr>
@@ -59,71 +59,71 @@
                                               </tr>
                                            </cfoutput>
                                         </table>
-                                   </div>
-                                   <div class="col-md-2">
-                                      <cfloop collection=#struct_name# item="itm">
-                                          <cfscript> string = "#itm#"; myArray=[]; result = IsNumeric(string); output = IIF(result eq 1, DE(true),DE(false)); if(output eq "true") StructDelete(struct_name,"#itm#",true); leng=Len(string); if(leng GT 3) { } else { StructDelete(struct_name,"#itm#",true); } </cfscript>
-                                      </cfloop>
-                                      <p>Decreasing order of the count of words <br> [No Numbers,NO wordlength less than 3] </p>
-                                      <hr>
-                                      <cfset sortData=StructSort(struct_name,"numeric","desc")>
-                                      <cfoutput></cfoutput>
-                                      <table border="1" class="table table-bordered">
-                                        <cfloop array="#sortData#" index="i">
-                                           <cfif isNumeric('#i#') EQ 'NO'>
-                                              <cfif structKeyExists(struct_name, #i#)>
-                                                  <cfoutput>
-                                                    <tr>
-                                                      <td>-#i# ( #struct_name["#i#" ]#) </td>
-                                                    </tr>
-                                                  </cfoutput>
-                                              </cfif>
-                                            </cfif>
+                                </div>
+                                <div class="col-md-2">
+                                        <cfloop collection=#struct_name# item="itm">
+                                            <cfscript> string = "#itm#"; myArray=[]; result = IsNumeric(string); output = IIF(result eq 1, DE(true),DE(false)); if(output eq "true") StructDelete(struct_name,"#itm#",true); leng=Len(string); if(leng GT 3) { } else { StructDelete(struct_name,"#itm#",true); } </cfscript>
                                         </cfloop>
-                                      </table>
-                                   </div>
-                                      <cfset position=StructNew()>
-                                      <cfloop index="i" array="#sortData#">
-                                          <cfset len=Len(#i#)>
-                                          <cfset position[i]="#len#">
-                                          <cfset position[i]++>
-                                      </cfloop>
-                                      <cfset sizeData=StructSort(position,"numeric","desc")>
-                                      <div class="col-md-2">
-                                          <p>Decreasing order of the lenghth of words <br>
-                                          </p>
-                                          <hr>
-                                          <table border="1" class="table table-bordered">
-                                              <cfloop array="#sizeData#" index="r">
-                                                <cfset wlen=len(#r#)-0>
-                                                    <cfoutput>
-                                                        <tr>
-                                                            <cfif #wlen# GT 7>
-                                                                  <h1 class="bblack">#r#,[#wlen#]</h1>
-                                                                  <br>
-                                                              </cfif>
-                                                              <cfif #wlen# EQ 7>
-                                                                  <h2 class="bbrown">#r#,[#wlen#]</h2>
-                                                                  <br>
-                                                              </cfif>
-                                                              <cfif #wlen# EQ 6>
-                                                                    <h3 class="bred">#r#,[#wlen#]</h3>
+                                        <p>Decreasing order of the count of words <br> [No Numbers,NO wordlength less than 3] </p>
+                                        <hr>
+                                        <cfset sortData=StructSort(struct_name,"numeric","desc")>
+                                        <cfoutput></cfoutput>
+                                        <table border="1" class="table table-bordered">
+                                                <cfloop array="#sortData#" index="i">
+                                                    <cfif isNumeric('#i#') EQ 'NO'>
+                                                        <cfif structKeyExists(struct_name, #i#)>
+                                                            <cfoutput>
+                                                                <tr>
+                                                                <td>-#i# (#struct_name["#i#" ]#) </td>
+                                                                </tr>
+                                                            </cfoutput>
+                                                        </cfif>
+                                                    </cfif>
+                                                </cfloop>
+                                        </table>
+                                </div>
+                                        <cfset position=StructNew()>
+                                        <cfloop index="i" array="#sortData#">
+                                            <cfset len=Len(#i#)>
+                                            <cfset position[i]="#len#">
+                                            <cfset position[i]++>
+                                        </cfloop>
+                                        <cfset sizeData=StructSort(position,"numeric","desc")>
+                                        <div class="col-md-2">
+                                            <p>Decreasing order of the lenghth of words <br>
+                                            </p>
+                                            <hr>
+                                            <table border="1" class="table table-bordered">
+                                                <cfloop array="#sizeData#" index="r">
+                                                    <cfset wlen=len(#r#)-0>
+                                                        <cfoutput>
+                                                            <tr>
+                                                                <cfif #wlen# GT 7>
+                                                                    <h1 class="bblue">#r#,[#wlen#]</h1>
                                                                     <br>
-                                                              </cfif>
-                                                              <cfif #wlen# EQ 5>
-                                                                    <h4 class="bgreen">#r#,[#wlen#]</h4>
+                                                                </cfif>
+                                                                <cfif #wlen# EQ 8>
+                                                                    <h2 class="bbrown">#r#,[#wlen#]</h2>
                                                                     <br>
-                                                              </cfif>
-                                                              <cfif #wlen# EQ 4>
-                                                                    <h5 class="bblue">#r#</h5>
-                                                                    <br>
-                                                              </cfif>
-                                                        </tr>
-                                                    </cfoutput>
-                                                 </cfloop>
-                                             </table>
-                                          </div>
+                                                                </cfif>
+                                                                <cfif #wlen# EQ 6>
+                                                                        <h3 class="bred">#r#,[#wlen#]</h3>
+                                                                        <br>
+                                                                </cfif>
+                                                                <cfif #wlen# EQ 5>
+                                                                        <h4 class="bgreen">#r#,[#wlen#]</h4>
+                                                                        <br>
+                                                                </cfif>
+                                                                <cfif #wlen# EQ 4>
+                                                                        <h5 class="bgreen">#r#</h5>
+                                                                        <br>
+                                                                </cfif>
+                                                            </tr>
+                                                        </cfoutput>
+                                                    </cfloop>
+                                                </table>
                                         </div>
+                            </div>
                </div>
        </div>
     </body>
